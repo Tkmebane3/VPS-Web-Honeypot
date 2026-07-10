@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TradeMaster Pro | Dashboard</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#0f172a;
+    color:white;
+}
+
+header{
+
+    background:#111827;
+
+    padding:20px 35px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    border-bottom:1px solid #334155;
+
+}
+
+.logo{
+
+    font-size:24px;
+
+    font-weight:bold;
+
+}
+
+.user{
+
+    color:#94a3b8;
+
+}
+
+.container{
+
+    width:1100px;
+
+    margin:40px auto;
+
+}
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:20px;
+
+}
+
+.card{
+
+    background:#1e293b;
+
+    border-radius:10px;
+
+    padding:25px;
+
+    min-height:150px;
+
+    box-shadow:0 0 15px rgba(0,0,0,.35);
+
+}
+
+.card h2{
+
+    margin-top:0;
+
+}
+
+.metric{
+
+    font-size:34px;
+
+    color:#22c55e;
+
+    margin-top:20px;
+
+}
+
+.status{
+
+    color:#22c55e;
+
+}
+
+footer{
+
+    margin-top:50px;
+
+    text-align:center;
+
+    color:#94a3b8;
+
+    font-size:13px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+
+TradeMaster Pro
+
+</div>
+
+<div class="user">
+
+Signed in: Operations Analyst
+
+</div>
+
+</header>
+
+<div class="container">
+
+<div class="grid">
+
+<div class="card">
+
+<h2>Trading Platform</h2>
+
+<p class="status">Operational</p>
+
+<div class="metric">99.98%</div>
+
+</div>
+
+<div class="card">
+
+<h2>Market Data</h2>
+
+<p class="status">Healthy</p>
+
+<div class="metric">24 Feeds</div>
+
+</div>
+
+<div class="card">
+
+<h2>Authentication</h2>
+
+<p class="status">Online</p>
+
+<div class="metric">1,284 Users</div>
+
+</div>
+
+<div class="card">
+
+<h2>Infrastructure</h2>
+
+<p>Cloud Services</p>
+
+<p>AWS Production Environment</p>
+
+</div>
+
+<div class="card">
+
+<h2>Support</h2>
+
+<p>IT Service Desk</p>
+
+<p>VPN Access</p>
+
+<p>Password Reset</p>
+
+</div>
+
+<div class="card">
+
+<h2>Security</h2>
+
+<p>Endpoint Protection</p>
+
+<p>MFA Enabled</p>
+
+<p>Continuous Monitoring</p>
+
+</div>
+
+</div>
+
+<footer>
+
+TradeMaster Pro Enterprise Dashboard v2.3.4
+
+</footer>
+
+</div>
+
+</body>
+
+</html>

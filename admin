@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TradeMaster Pro Admin Portal</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #0f172a;
+            color: white;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .admin-box {
+            width: 390px;
+            background: #1e293b;
+            padding: 32px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            margin: 0;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .subtitle {
+            text-align: center;
+            margin: 10px 0 24px;
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .status-panel {
+            background: #111827;
+            border: 1px solid #334155;
+            padding: 16px;
+            border-radius: 8px;
+        }
+
+        .status-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        .online {
+            color: #22c55e;
+        }
+
+        .restricted {
+            margin-top: 20px;
+            padding: 12px;
+            background: #7f1d1d;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        a {
+            display: block;
+            margin-top: 18px;
+            color: #38bdf8;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="admin-box">
+
+    <h1>Administrator Portal</h1>
+
+    <p class="subtitle">
+        TradeMaster Pro Infrastructure Management
+    </p>
+
+    <div class="status-panel">
+
+        <div class="status-row">
+            <span>Trading API</span>
+            <span class="online">Online</span>
+        </div>
+
+        <div class="status-row">
+            <span>Market Data Feed</span>
+            <span class="online">Online</span>
+        </div>
+
+        <div class="status-row">
+            <span>Authentication Service</span>
+            <span class="online">Online</span>
+        </div>
+
+        <div class="status-row">
+            <span>Administrative Access</span>
+            <span>Restricted</span>
+        </div>
+
+    </div>
+
+    <div class="restricted">
+        Authorized personnel only. All access attempts are monitored.
+    </div>
+
+    <a href="index.html">Return to Login</a>
+
+</div>
+
+</body>
+</html>
