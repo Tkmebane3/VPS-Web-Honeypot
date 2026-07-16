@@ -2,85 +2,316 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>TradeMaster Pro</title>
+
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
+            margin: 0;
+            min-height: 100vh;
             background: #0f172a;
             color: white;
             font-family: Arial, sans-serif;
+        }
+
+        header {
+            background: #111827;
+            border-bottom: 1px solid #334155;
+            padding: 18px 30px;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            height: 100vh;
         }
-        .login-box {
-            width: 350px;
-            background: #1e293b;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 15px rgba(0,0,0,.5);
+
+        .brand {
+            font-size: 24px;
+            font-weight: bold;
         }
-        h2 {
+
+        nav a {
+            color: #cbd5e1;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        nav a:hover {
+            color: #22c55e;
+        }
+
+        main {
+            width: min(1100px, 92%);
+            margin: 50px auto;
+        }
+
+        .hero {
             text-align: center;
+            margin-bottom: 40px;
         }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            color: #94a3b8;
+            font-size: 18px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fit,
+                minmax(320px, 1fr)
+            );
+            gap: 24px;
+        }
+
+        .card {
+            background: #1e293b;
+            padding: 28px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.35);
+        }
+
+        .card h2 {
+            margin-top: 0;
+        }
+
+        .card p {
+            color: #cbd5e1;
+            line-height: 1.5;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            color: #cbd5e1;
+        }
+
         input {
             width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-            border: none;
-            border-radius: 5px;
+            padding: 12px;
+            margin-top: 7px;
+            border: 1px solid #475569;
+            border-radius: 6px;
+            background: #0f172a;
+            color: white;
         }
+
         button {
             width: 100%;
-            margin-top: 15px;
-            padding: 10px;
+            margin-top: 18px;
+            padding: 12px;
             background: #22c55e;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
             cursor: pointer;
+            font-weight: bold;
         }
-        .warning {
-            text-align: center;
-            margin-top: 15px;
+
+        button:hover {
+            background: #16a34a;
+        }
+
+        .market-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 13px 0;
+            border-bottom: 1px solid #334155;
+        }
+
+        .market-row:last-child {
+            border-bottom: none;
+        }
+
+        .positive {
+            color: #22c55e;
+        }
+
+        .negative {
+            color: #ef4444;
+        }
+
+        .notice {
+            margin-top: 20px;
+            padding: 14px;
+            background: #111827;
+            border-left: 4px solid #facc15;
             color: #facc15;
-            font-size: 12px;
+            font-size: 14px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #64748b;
         }
     </style>
 </head>
 
 <body>
 
-<div class="login-box">
-
-    <h2>TradeMaster Pro - email calvintrading6@gmail.com </h2>
-
-    <form action="/api/login" method="POST">
-    <input
-        type="text"
-        placeholder="Username"
-        name="username"
-        autocomplete="off"
-        required
-    >
-
-    <input
-        type="password"
-        placeholder="Password"
-        name="password"
-        autocomplete="off"
-        required
-    >
-
-    <button type="submit">Login</button>
-</form>
-
-    <div class="warning">
-        Secure Trading Infrastructure
+<header>
+    <div class="brand">
+        TradeMaster Pro
     </div>
 
-</div>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/search.html">Research</a>
+        <a href="/portal.html">Client Portal</a>
+        <a href="/dashboard.html">Dashboard</a>
+        <a href="/admin.html">Admin</a>
+    </nav>
+</header>
+
+<main>
+
+    <section class="hero">
+        <h1>Secure Trading Infrastructure</h1>
+
+        <p>
+            Access portfolio analytics, market research,
+            and institutional trading resources.
+        </p>
+    </section>
+
+    <section class="grid">
+
+        <div class="card">
+            <h2>Client Login</h2>
+
+            <p>
+                Sign in to access your trading account and
+                portfolio dashboard.
+            </p>
+
+            <form action="/api/login" method="POST">
+
+                <label for="username">
+                    Username
+                </label>
+
+                <input
+                    id="username"
+                    type="text"
+                    name="username"
+                    placeholder="Enter username"
+                    autocomplete="off"
+                    required
+                >
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    id="password"
+                    type="password"
+                    name="password"
+                    placeholder="Enter password"
+                    autocomplete="off"
+                    required
+                >
+
+                <button type="submit">
+                    Sign In
+                </button>
+            </form>
+
+            <div class="notice">
+                Platform maintenance may temporarily affect account access.
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Market Research</h2>
+
+            <p>
+                Search trading reports, symbols, strategies,
+                and internal market resources.
+            </p>
+
+            <form action="/api/search" method="GET">
+
+                <label for="search-query">
+                    Search
+                </label>
+
+                <input
+                    id="search-query"
+                    type="text"
+                    name="q"
+                    placeholder="Search symbols or reports"
+                    autocomplete="off"
+                    required
+                >
+
+                <button type="submit">
+                    Search Resources
+                </button>
+            </form>
+
+            <div class="notice">
+                Research results are currently limited during maintenance.
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Market Overview</h2>
+
+            <div class="market-row">
+                <span>S&amp;P 500</span>
+                <span class="positive">+0.84%</span>
+            </div>
+
+            <div class="market-row">
+                <span>NASDAQ</span>
+                <span class="positive">+1.12%</span>
+            </div>
+
+            <div class="market-row">
+                <span>Gold</span>
+                <span class="negative">-0.31%</span>
+            </div>
+
+            <div class="market-row">
+                <span>EUR/USD</span>
+                <span class="positive">+0.18%</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Investor Resources</h2>
+
+            <p>
+                Authorized users may access additional tools through
+                the secure client portal and trading dashboard.
+            </p>
+
+            <p>
+                System administrators should use the designated
+                administrative interface.
+            </p>
+        </div>
+
+    </section>
+
+</main>
+
+<footer>
+    TradeMaster Pro © 2026 — Secure Trading Infrastructure
+</footer>
 
 </body>
 </html>
