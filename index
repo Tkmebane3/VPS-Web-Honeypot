@@ -56,45 +56,31 @@
 
     <h2>TradeMaster Pro - email calvintrading6@gmail.com </h2>
 
-    <form id="loginForm">
+    <form action="/api/login" method="POST">
+    <input
+        type="text"
+        placeholder="Username"
+        name="username"
+        autocomplete="off"
+        required
+    >
 
-        <input
-            type="text"
-            placeholder="Username"
-            name="username"
-            required
-        >
+    <input
+        type="password"
+        placeholder="Password"
+        name="password"
+        autocomplete="off"
+        required
+    >
 
-        <input
-            type="password"
-            placeholder="Password"
-            name="password"
-            required
-        >
-        <button type="submit">
-            Login
-        </button>
-
-    </form>
+    <button type="submit">Login</button>
+</form>
 
     <div class="warning">
         Secure Trading Infrastructure
     </div>
 
 </div>
-
-<script>
-document
-.getElementById("loginForm")
-.addEventListener("submit", function(e){
-
-    e.preventDefault();
-
-    alert(
-        "Trading platform currently under maintenance."
-    );
-});
-</script>
 
 </body>
 </html>
