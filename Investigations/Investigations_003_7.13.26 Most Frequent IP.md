@@ -1,5 +1,4 @@
-# SIEM Finding: 
-Most Frequent IP address 
+# Investigation 003: SIEM Finding - Most Frequent IP address 
 
 ## Summary:
 167.99.154.193 was the most frequent source IP record in the last 100 security logs. 
