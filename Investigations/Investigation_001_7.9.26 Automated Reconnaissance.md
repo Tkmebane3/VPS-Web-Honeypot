@@ -13,7 +13,7 @@ and subsequently tested four common environment file paths:
 All environment file requests returned HTTP 404 Not Found. No sensitive
 files were exposed, and no evidence of successful exploitation was observed.
 
-## Security recommendations summary for environment file attacks
+## Security Recommendation Summary 
 Environment files (such as .env, .env.local, and .env.production) should never reside within the web server's publicly accessible document root. Sensitive configuration files should be stored outside the web root so they cannot be retrieved over HTTP, even if their filenames are guessed. 
 - Configure web servers to deny access to specific files
 - Deploy WAF firewall configured to detect and block requests for sensitive files
