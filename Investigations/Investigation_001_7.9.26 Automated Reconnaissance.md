@@ -1,5 +1,6 @@
 # INVESTIGATION-001: Environment File Enumeration
-## Executive Summary
+
+## Summary
 On July 9, 2026, an external host conducted automated reconnaissance
 against the Internet-facing Nginx server. The source requested the homepage, 
 which returned an expected 200 success code,
@@ -12,6 +13,15 @@ and subsequently tested four common environment file paths:
 All environment file requests returned HTTP 404 Not Found. No sensitive
 files were exposed, and no evidence of successful exploitation was observed.
 
+## Security recommendations summary for environment file attacks
+Environment files (such as .env, .env.local, and .env.production) should never reside within the web server's publicly accessible document root. Sensitive configuration files should be stored outside the web root so they cannot be retrieved over HTTP, even if their filenames are guessed. 
+- Configure web servers to deny access to specific files
+- Deploy WAF firewall configured to detect and block requests for sensitive files
+- Implement .gitignore rules
+- Securely store secrets in a secret management solution such as AWS Secrets Manager
+- Alert when sensitive paths return HTTP 200 responses.
+- Rate limiting for repetitive scans
+
 ## Classification
 - Incident type: Web reconnaissance and file enumeration
 - Severity: Low
@@ -21,7 +31,6 @@ files were exposed, and no evidence of successful exploitation was observed.
 
 ## Timeline
 | Time (UTC) | Request | Status | Interpretation |
-|---|---|---:|---|
 | 00:18:33 | `GET /` | 200 | Initial server discovery |
 | 00:18:35 | `GET /.env` | 404 | Environment-file probe |
 | 00:18:42 | `GET /.env.local` | 404 | Local environment-file probe |
@@ -57,12 +66,3 @@ No escalation was required because:
 A request for a sensitive file is evidence of discovery attempts, not proof
 of compromise. The HTTP response code and follow-on behavior are necessary
 to determine whether the attempt succeeded.
-
-## Security recommendations for environment file attacks
-Environment files (such as .env, .env.local, and .env.production) should never reside within the web server's publicly accessible document root. Sensitive configuration files should be stored outside the web root so they cannot be retrieved over HTTP, even if their filenames are guessed. 
-- Configure web servers to deny access to specific files
-- Deploy WAF firewall configured to detect and block requests for sensitive files
-- Implement .gitignore rules
-- Securely store secrets in a secret management solution such as AWS Secrets Manager
-- Alert when sensitive paths return HTTP 200 responses.
-- Rate limiting for repetitive scans

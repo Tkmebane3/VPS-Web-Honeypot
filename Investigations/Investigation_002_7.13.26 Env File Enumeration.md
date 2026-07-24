@@ -1,5 +1,4 @@
-## Investigation Title:
-Environment File Enumeration Campaign
+# Investigation 002: Environment File Enumeration Campaign
 
 ## Summary
 A remote host performed automated reconnaissance against the web server by requesting numerous environment and configuration files commonly associated with exposed application secrets. No sensitive files were disclosed. All requests resulted in HTTP 404 responses.
