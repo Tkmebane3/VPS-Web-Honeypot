@@ -1,36 +1,36 @@
-# INVESTIGATION-001: Environment File Enumeration
+# Investigation Title:
+Environment File Enumeration
+
+## Date: July 9, 2026
 
 ## Summary
-On July 9, 2026, an external host conducted automated reconnaissance
-against the Internet-facing Nginx server. The source requested the homepage, 
-which returned an expected 200 success code,
-and subsequently tested four common environment file paths:
-- `/.env`
-- `/.env.local`
-- `/.env.production`
-- `/.env.bak`
 
-All environment file requests returned HTTP 404 Not Found. No sensitive
-files were exposed, and no evidence of successful exploitation was observed.
+An external host conducted automated reconnaissance against the Internet-facing Nginx server. After successfully requesting the public homepage, the source tested four common environment-file paths: `/.env`, `/.env.local`, `/.env.production`, and `/.env.bak`.
 
-## Security Recommendation Summary 
-Environment files (such as .env, .env.local, and .env.production) should never reside within the web server's publicly accessible document root. Sensitive configuration files should be stored outside the web root so they cannot be retrieved over HTTP, even if their filenames are guessed. 
-- Configure web servers to deny access to specific files
-- Deploy WAF firewall configured to detect and block requests for sensitive files
-- Implement .gitignore rules
-- Securely store secrets in a secret management solution such as AWS Secrets Manager
-- Alert when sensitive paths return HTTP 200 responses.
-- Rate limiting for repetitive scans
+All environment-file requests returned `404 Not Found`. No sensitive files were exposed, and no evidence of successful exploitation was identified.
+
+## Security Recommendations
+
+- Keep environment and configuration files outside the publicly accessible web root.
+- Configure the web server to deny access to sensitive configuration files.
+- Use a WAF to detect and block requests for sensitive paths where appropriate.
+- Maintain `.gitignore` rules to reduce accidental publication of secrets.
+- Store application secrets in a dedicated secret-management solution.
+- Alert when sensitive paths unexpectedly return HTTP `200`.
+- Consider rate limiting for repetitive enumeration activity.
 
 ## Classification
-- Incident type: Web reconnaissance and file enumeration
-- Severity: Low
-- Status: Closed — unsuccessful
-- MITRE ATT&CK: T1595 — Active Scanning
-- Data source: Nginx access logs
+
+- **Incident Type:** Web reconnaissance / environment-file enumeration
+- **Severity:** Low
+- **Status:** Closed — unsuccessful
+- **MITRE ATT&CK:** T1595 — Active Scanning
+- **Data Source:** Nginx access logs
 
 ## Timeline
+
 | Time (UTC) | Request | Status | Interpretation |
+|---|---|---:|---|
 | 00:18:33 | `GET /` | 200 | Initial server discovery |
 | 00:18:35 | `GET /.env` | 404 | Environment-file probe |
 | 00:18:42 | `GET /.env.local` | 404 | Local environment-file probe |
@@ -38,31 +38,25 @@ Environment files (such as .env, .env.local, and .env.production) should never r
 | 00:19:53 | `GET /.env.bak` | 404 | Backup configuration probe |
 
 ## Indicators
-- Source IP: `144.172.103.227`
-- Targeted paths: `/.env`, `/.env.local`, `/.env.production`, `/.env.bak`
-- Protocol: HTTP
-- Request method: GET
+
+- **Source IP:** `144.172.103.227`
+- **Targeted Paths:** `/.env`, `/.env.local`, `/.env.production`, `/.env.bak`
+- **Protocol:** HTTP
+- **Method:** GET
+- **Observed Responses:** `200`, `404`
 
 ## Analysis
-The sequence is inconsistent with normal browsing behavior. After confirming
-that the web server responded successfully, the source tested multiple common
-environment-file naming conventions. Such files may contain database
-credentials, API keys, tokens, or other application secrets when improperly
-deployed so the attacker was likely seeking access to this data.
 
-The four targeted resources returned HTTP 404 responses, indicating that the
-requested files were not publicly available. No successful authentication,
-file disclosure, code execution, or persistence activity was observed.
+The request sequence is inconsistent with normal browsing behavior. After confirming the web server responded successfully, the source tested multiple common environment-file naming conventions that may expose credentials, API keys, tokens, or other secrets when improperly deployed.
+
+All targeted environment-file requests returned `404`, indicating the requested resources were not publicly available. No successful authentication, file disclosure, code execution, persistence, or follow-on exploitation was observed.
 
 ## Disposition
-No escalation was required because:
 
-- All sensitive-resource probes failed.
-- No HTTP 200 response was returned for the targeted files.
-- No follow-on exploitation was observed.
-- No evidence of data exposure or system compromise was identified.
+**Closed — reconnaissance observed; no compromise identified.**
+
+No escalation was required because all sensitive-resource probes failed, no targeted file returned HTTP `200`, and no evidence of data exposure or system compromise was identified.
 
 ## Lessons Learned
-A request for a sensitive file is evidence of discovery attempts, not proof
-of compromise. The HTTP response code and follow-on behavior are necessary
-to determine whether the attempt succeeded.
+
+Requests for sensitive files indicate discovery activity, not proof of compromise. Response codes and follow-on behavior are necessary to determine whether enumeration attempts were successful.
